@@ -1,0 +1,202 @@
+	body {
+		margin:0 0 0 0;
+	}
+	#main{
+		text-align:center
+	}
+	video::-webkit-media-controls {
+	  display: none;
+	}
+	video {
+		pointer-events: none;
+	}
+	
+	video::-webkit-media-controls-panel,
+	video::-webkit-media-controls-play-button,
+	video::-webkit-media-controls-volume-slider-container,
+	video::-webkit-media-controls-volume-slider,
+	video::-webkit-media-controls-mute-button,
+	video::-webkit-media-controls-timeline,
+	video::-webkit-media-controls-current-time-display,
+	video::-webkit-full-page-media::-webkit-media-controls-panel,
+	video::-webkit-media-controls-timeline-container,
+	video::-webkit-media-controls-time-remaining-display,
+	video::-webkit-media-controls-seek-back-button,
+	video::-webkit-media-controls-seek-forward-button,
+	video::-webkit-media-controls-fullscreen-button,
+	video::-webkit-media-controls-rewind-button,
+	video::-webkit-media-controls-return-to-realtime-button,
+	video::-webkit-media-controls-toggle-closed-captions-button,
+	video::-webkit-media-controls, video::-moz-media-controls, video::-o-media-controls, video::-ms-media-controls {  display: none !important; }
+	
+	.replayButton {
+	  border-radius: 100px;
+	  border: 8px solid #fff !important;
+	  height: 100px;
+	  position: absolute;
+	  width: 100px;
+	  margin: auto;
+	  top: 0;
+	  bottom: 0;
+	  right: 0;
+	  left: 0;
+	  cursor: pointer;
+	  display: block;
+	  opacity: 0.95;
+	  transition: opacity 150ms;
+	}
+
+	.replayButton:before {
+	  height: 45px;
+	  width: 45px;
+	  position: absolute;
+	  top: 18px;
+	  left: 18px;
+	  content: '';
+	  display: block;
+	  border-color: transparent white white white;
+	  border-radius: 50%;
+	  border-style: solid;
+	  border-width: 8px;
+	  -webkit-transform: rotate(-90deg);
+	  transform: rotate(-90deg);
+	}
+	.replayButton:after {
+	  border-color: transparent transparent transparent white;
+	  border-style: solid;
+	  border-width: 0 45px 22px 22px;
+	  height: 0;
+	  position: absolute;
+	  top: 40px;
+	  left: 15px;
+	  bottom: 0;
+	  right: 0;
+	  width: 0;
+	  content: "";
+	  display: block;
+	  margin: auto;
+	}
+	video#recorder{
+		transform: rotateY(180deg);
+		-webkit-transform:rotateY(180deg); /* Safari and Chrome */
+		-moz-transform:rotateY(180deg); /* Firefox */
+	}
+
+	.spinner {
+	  -webkit-animation: rotate 2s linear infinite;
+			  animation: rotate 2s linear infinite;
+	  z-index: 2;
+	  position: absolute;
+	  top: 15vh;
+	  left: 50%;
+	  margin: -25px 0 0 -25px;
+	  width: 50px;
+	  height: 50px;
+	}
+	.spinner .path {
+	  stroke: #93bfec;
+	  stroke-linecap: round;
+	  -webkit-animation: dash 1.5s ease-in-out infinite;
+			  animation: dash 1.5s ease-in-out infinite;
+	}
+
+	@-webkit-keyframes rotate {
+	  100% {
+		-webkit-transform: rotate(360deg);
+				transform: rotate(360deg);
+	  }
+	}
+
+	@keyframes rotate {
+	  100% {
+		-webkit-transform: rotate(360deg);
+				transform: rotate(360deg);
+	  }
+	}
+	@-webkit-keyframes dash {
+	  0% {
+		stroke-dasharray: 1, 150;
+		stroke-dashoffset: 0;
+	  }
+	  50% {
+		stroke-dasharray: 90, 150;
+		stroke-dashoffset: -35;
+	  }
+	  100% {
+		stroke-dasharray: 90, 150;
+		stroke-dashoffset: -124;
+	  }
+	}
+	@keyframes dash {
+	  0% {
+		stroke-dasharray: 1, 150;
+		stroke-dashoffset: 0;
+	  }
+	  50% {
+		stroke-dasharray: 90, 150;
+		stroke-dashoffset: -35;
+	  }
+	  100% {
+		stroke-dasharray: 90, 150;
+		stroke-dashoffset: -124;
+	  }
+	}
+
+	.recordrtc button{
+		vertical-align: middle;
+		height:10vh!important;
+		width:100vw;
+		line-height: 1;
+		padding: 2px 5px;
+		height: auto;
+		font-size: inherit;
+		margin: 0;
+	}
+	.recordrtc video {
+		width:100vw;
+		height:auto;
+		margin: 0 auto;
+	}
+	@media (orientation: landscape) { 
+		.recordrtc video {
+			height:80vh
+		}
+	}
+	@media (orientation: potrait) { 
+		.recordrtc video {
+			width:100vw;
+		}
+	}
+	.recordrtc button {
+		font-size: inherit;
+	}
+	button{
+		display:inline-block;
+		width:70%;
+		padding:0.46em 1.6em;
+		border:0.1em solid #000000;
+		margin:0 0.2em 0.2em 0;
+		border-radius:0.12em;
+		box-sizing: border-box;
+		text-decoration:none;
+		font-family:'Roboto',sans-serif;
+		font-weight:300;
+		color:#000000;
+		text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
+		background-color:#42cc8c;
+		text-align:center;
+		transition: all 0.15s;
+		}
+	button:hover{
+		text-shadow: 0 0 2em rgba(255,255,255,1);
+		color:#FFFFFF;
+		border-color:#FFFFFF;
+	}
+	@media all and (max-width:30em){ a.button{ display:block; margin:0.4em auto;}}
+	#base64 {
+		width:100vw;
+		height:30vh;
+	}
+	html{
+		text-align:center;
+	}
