@@ -1,9 +1,24 @@
 <?php
 header("Access-Control-Allow-Origin: *");
+$dirPath = dirPath();
+//Important Settings
+//upload path relative to script (full  path)
+$uploadFolder = $dirPath.'uploads/';
+$convertedFolder = $dirPath.'uploads/converted/';
+$BuffSize = "1M";
+$MaxRate = "1M";
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 set_error_handler("someFunction");
+
+function dirPath(){
+	if (DIRECTORY_SEPARATOR=='/')
+	  return dirname(__FILE__).'/';
+	else
+	  return str_replace('\\', '/', dirname(__FILE__)).'/';
+}
 
 function someFunction($errno, $errstr) {
     echo '<h2>Upload failed.</h2><br>';
@@ -22,13 +37,15 @@ function selfInvoker()
         return;
     }
     
-    $fileName = '';
     $tempName = '';
-    $file_idx = '';
+	$MaxRate = $GLOBALS['MaxRate'];
+	$BuffSize = $GLOBALS['BuffSize'];
+	$uploadFolder = $GLOBALS['uploadFolder'];
     
 	$file_idx = 'video-blob';
 	$isSafari = $_POST['isSafari'] == 'true';
 	$fileName = $_POST['video-filename'];
+	
 	if (!$isSafari) $fileName = str_replace(".mp4",".webm",$fileName);
 	
 	$tempName = $_FILES[$file_idx]['tmp_name'];
@@ -44,7 +61,7 @@ function selfInvoker()
     }
 
 	//JRM :: Folder Path to upload webm/mp4 for conversion, relative to this PHP file
-    $filePath = 'uploads/' . $fileName;
+    $filePath = $uploadFolder. $fileName;
     
     // make sure that one can upload only allowed audio/video files
     $allowed = array(
@@ -52,6 +69,7 @@ function selfInvoker()
         'mp4',
         'mkv'
     );
+	
     $extension = pathinfo($filePath, PATHINFO_EXTENSION);
     if (!$extension || empty($extension) || !in_array($extension, $allowed)) {
         echo 'Invalid file extension: '.$extension;
@@ -84,17 +102,14 @@ function selfInvoker()
         return;
     }
 	
-    $basePath = '/home/murphy/public_html/demoios/method2/'; //JRM :: Full Path to the location of this file
-	$filePath = $basePath.$filePath; 
-	$newFilePath = $basePath.'/uploads/converted/'.str_replace(".webm",".mp4",$fileName); //JRM :: Path to Converted Files, relative to this file
+	$newFilePath = $GLOBALS['convertedFolder'].str_replace(".webm",".mp4",$fileName);
 	
-	//JRM :: BUFSIZE / MaxRate : Maximum File Size
 	if ($_POST['orientation'] == 'landscape' && !$_POST['isSafari']=='false')
 		shell_exec("ffmpeg -i {$filePath} -vf \"hflip,scale=480x640\" -c:a -r 24 -an {$newFilePath} 2>&1");
 	else if ($_POST['isSafari'] == 'true' && $_POST['orientation'] == 'landscape')
-		shell_exec("ffmpeg -i {$filePath} -vf \"vflip\" -c:a -an -maxrate 1M -bufsize 1M {$newFilePath} 2>&1");
+		shell_exec("ffmpeg -i {$filePath} -vf \"vflip\" -c:a -an -maxrate {$MaxRate} -bufsize {$BuffSize} {$newFilePath} 2>&1");
 	else if ($_POST['isSafari'] == 'true' && $_POST['orientation'] == 'potrait')
-		shell_exec("ffmpeg -i {$filePath} -vf \"hflip,transpose=2,scale=480x640\" -c:a -an -maxrate 1M -bufsize  1M {$newFilePath} 2>&1");
+		shell_exec("ffmpeg -i {$filePath} -vf \"hflip,transpose=2,scale=480x640\" -c:a -an -maxrate {$MaxRate} -bufsize  {$BuffSize} {$newFilePath} 2>&1");
 	else 
 		shell_exec("ffmpeg -i {$filePath} -vf \"hflip\" {$newFilePath} 2>&1");
 	

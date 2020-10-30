@@ -11,6 +11,11 @@
 		pointer-events: none;
 	}
 	
+	video#player{
+		transform: rotateY(180deg);
+		-moz-transform:rotateY(180deg); /* Firefox */
+	}
+
 	video::-webkit-media-controls-panel,
 	video::-webkit-media-controls-play-button,
 	video::-webkit-media-controls-volume-slider-container,

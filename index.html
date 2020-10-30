@@ -1,34 +1,35 @@
-
-<!DOCTYPE HTML>
-<html>
-	<head>
+
+<!DOCTYPE HTML>
+<html>
+	<head>
 		<title>IOS Web Cam Test : TEST</title>	
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<link rel="stylesheet" href="style.css?v=1.00alpha10">
-		<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
-		<META HTTP-EQUIV="EXPIRES" CONTENT="Mon, 22 Jul 2002 11:12:01 GMT">
-		<!-- Scripts -->
-		<script src="./RecordRTC.js"></script>
-		<script src="./DetectRTC.js"> </script>
-		<!-- for Edige/FF/Chrome/Opera/etc. getUserMedia support -->
-		<script src="./cAdapter.js"></script>
-	</head>
-	<body class="is-preload">
-	<div id="main">
-		<section class="experiment recordrtc">
-                <button>Buka Kamera</button>
-				<video style="display:none" id="player" playsinline="" autoplay="" muted="true" volume="0" src=""></video>
-				<div class="replayButton" id="replayButton" onclick="replay_me()"></div>
-				<video style="display:none" id="recorder"  playsinline="" autoplay=" muted="true" volume="0"></video>
-				<svg style="display:none" id="spinner" class="spinner" viewBox="0 0 50 50">
-				  <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
-				</svg>
-				<textarea style="display:none" id="base64" class=""></textarea>
-		</section>
-		</div>
-		<script src="./page.js?v=1.00alpha11"></script>
-</body>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" href="style.css?v=1.00alpha10">
+		<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+		<META HTTP-EQUIV="EXPIRES" CONTENT="Mon, 22 Jul 2002 11:12:01 GMT">
+		<!-- Scripts -->
+		<script src="./RecordRTC.js"></script>
+		<script src="./DetectRTC.js"> </script>
+		<!-- for Edige/FF/Chrome/Opera/etc. getUserMedia support -->
+		<script src="./cAdapter.js"></script>
+	</head>
+	<body class="is-preload">
+	<div id="main">
+		<section class="experiment recordrtc">
+                <button>Buka Kamera</button>
+				<video style="display:none" id="player" playsinline="" autoplay="" muted="true" volume="0" src=""></video>
+				<div class="replayButton" id="replayButton" onclick="replay_me()"></div>
+				<video style="display:none" id="recorder"  playsinline="" autoplay=" muted="true" volume="0"></video>
+				<svg style="display:none" id="spinner" class="spinner" viewBox="0 0 50 50">
+				  <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+				</svg>
+				<textarea style="display:none" id="base64" class=""></textarea>
+		</section>
+		</div>
+		<script src="./page.js?v=1.0a"></script>
+</body>
 </html>
